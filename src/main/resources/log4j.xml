@@ -1,0 +1,12 @@
+<loggers>
+    <!-- 下面是打印通过log4j2打印出mybatis语句的配置-->
+    <logger name="com.mettre.usually.mapper">
+        <level>DEBUG</level>
+    </logger>
+
+    <!-- root logger，任何其它的logger最终都相当于继承自 root logger -->
+    <root level="INFO">
+        <appenderRef ref="Console"/>
+        <appenderRef ref="FileLog"></appenderRef>
+    </root>
+</loggers>
