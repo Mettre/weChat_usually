@@ -7,7 +7,7 @@ public interface FileService {
 
     int deleteByPrimaryKey(Long fileId);
 
-    int insert(MultipartFile multipartFile);
+    long insert(MultipartFile multipartFile);
 
     int insertSelective(File record);
 

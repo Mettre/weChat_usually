@@ -2,6 +2,7 @@ package com.mettre.usually.constant;
 
 import com.mettre.usually.base.Result;
 import com.mettre.usually.base.ResultUtil;
+import com.mettre.usually.enum_.ResultEnum;
 import com.mettre.usually.exception.CustomerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 
 /**
@@ -31,6 +33,8 @@ public class ExceptionHandle {
             BindException exception = (BindException) e;
             FieldError fieldError = exception.getBindingResult().getFieldError();
             return new ResultUtil<Object>().setErrorMsg("400", fieldError.getDefaultMessage());
+        } else if (e instanceof MaxUploadSizeExceededException) {
+            throw new CustomerException(ResultEnum.FILE_EXCEED);
         } else {
             logger.error("[系统异常 {}", e);
             return new ResultUtil<Object>().setErrorMsg("未知错误" + e.getMessage());

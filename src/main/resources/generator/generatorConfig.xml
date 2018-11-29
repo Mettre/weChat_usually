@@ -87,11 +87,11 @@
         <!--enableDeleteByExample="false" enableSelectByExample="false"-->
         <!--enableUpdateByExample="false">-->
         <!--</table>-->
-        <!--<table tableName="wc_file"-->
-               <!--domainObjectName="File" enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
-        <!--</table>-->
+        <table tableName="wc_feedback"
+               domainObjectName="Feedback" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false">
+        </table>
 
     </context>
 </generatorConfiguration>

@@ -32,7 +32,6 @@ public class FileServiceImpl implements FileService {
     @Autowired
     private QiniuUtil qiniuUtil;
 
-
     @Autowired
     public FileMapper fileMapper;
 
@@ -42,7 +41,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public int insert(MultipartFile multipartFile) {
+    public long insert(MultipartFile multipartFile) {
         if (multipartFile.isEmpty() || StrUtil.isBlank(multipartFile.getOriginalFilename())) {
             throw new CustomerException(ResultEnum.IMG_NOT_EMPTY);
         }
@@ -51,6 +50,7 @@ public class FileServiceImpl implements FileService {
             throw new CustomerException(ResultEnum.IMG_FORMAT_ERROR);
         }
         String root_fileName = multipartFile.getOriginalFilename();
+        String prefix = root_fileName.substring(root_fileName.lastIndexOf("."));
         logger.info("上传图片:name={},type={}", root_fileName, contentType);
 
         //获取路径
@@ -59,13 +59,13 @@ public class FileServiceImpl implements FileService {
         logger.info("图片保存路径={}", location);
         String file_name = null;
         try {
-            file_name = qiniuUtil.saveImg(multipartFile, filePath);
+            file_name = qiniuUtil.saveImg(multipartFile, filePath, prefix);
             if (StrUtil.isBlank(file_name)) {
                 throw new CustomerException(ResultEnum.IMG_NOT_EMPTY);
             }
             File file = new File(return_path + java.io.File.separator + file_name);
-            int type = fileMapper.insert(file);
-            return ReturnType.ReturnType(type, ResultEnum.IMG_INSERT_ERROR);
+            fileMapper.insert(file);
+            return ReturnType.ReturnType(file.getFileId(), ResultEnum.IMG_INSERT_ERROR);
         } catch (IOException e) {
             throw new CustomerException(ResultEnum.IMG_NOT_EMPTY);
         }

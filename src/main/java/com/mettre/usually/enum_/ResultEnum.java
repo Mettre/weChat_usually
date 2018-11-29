@@ -17,7 +17,8 @@ public enum ResultEnum {
     IMG_NOT_EMPTY("102", "图片不存在"),
     IMG_QINIUYUN_EMPTY("103", "上传失败，请检查七牛云配置"),
     IMG_FORMAT_ERROR("104", "图片格式不正确"),
-    IMG_INSERT_ERROR("102", "图片插入失败"),
+    FILE_EXCEED("105", "上传文件超过1M"),
+    IMG_INSERT_ERROR("106", "图片插入失败"),
     PERMISSION_DENIED("E401", "未登录");
 
     private String code;

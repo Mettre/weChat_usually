@@ -31,8 +31,14 @@ spring:
     img:
         location: F:\file\
 
+
+    # 文件大小上传配置
+    multipart:
+        max-file-size: 5Mb
+        max-request-size: 5Mb
+
 server:
-    port: 8763 #启动端口
+    port: 8765 #启动端口
 
 eureka:
   client:
@@ -70,8 +76,6 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
-
-
 
 
 # Swagger界面内容配置

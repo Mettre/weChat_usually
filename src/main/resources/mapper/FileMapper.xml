@@ -1,68 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mettre.usually.mapper.FileMapper" >
-  <resultMap id="BaseResultMap" type="com.mettre.usually.pojo.File" >
-    <id column="file_id" property="fileId" jdbcType="BIGINT" />
-    <result column="file_link" property="fileLink" jdbcType="VARCHAR" />
-    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.mettre.usually.mapper.FileMapper">
+    <resultMap id="BaseResultMap" type="com.mettre.usually.pojo.File">
+        <id column="file_id" property="fileId" jdbcType="BIGINT"/>
+        <result column="file_link" property="fileLink" jdbcType="VARCHAR"/>
+        <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     file_id, file_link, creation_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from wc_file
-    where file_id = #{fileId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from wc_file
+        where file_id = #{fileId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from wc_file
     where file_id = #{fileId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.mettre.usually.pojo.File" >
-    insert into wc_file (file_id, file_link, creation_time
-      )
-    values (#{fileId,jdbcType=BIGINT}, #{fileLink,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.mettre.usually.pojo.File" >
-    insert into wc_file
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="fileId != null" >
-        file_id,
-      </if>
-      <if test="fileLink != null" >
-        file_link,
-      </if>
-      <if test="creationTime != null" >
-        creation_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="fileId != null" >
-        #{fileId,jdbcType=BIGINT},
-      </if>
-      <if test="fileLink != null" >
-        #{fileLink,jdbcType=VARCHAR},
-      </if>
-      <if test="creationTime != null" >
-        #{creationTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mettre.usually.pojo.File" >
-    update wc_file
-    <set >
-      <if test="fileLink != null" >
-        file_link = #{fileLink,jdbcType=VARCHAR},
-      </if>
-      <if test="creationTime != null" >
-        creation_time = #{creationTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where file_id = #{fileId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.mettre.usually.pojo.File" >
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="file_id" keyProperty="fileId" parameterType="com.mettre.usually.pojo.File">
+        <selectKey keyColumn="file_id" keyProperty="fileId" order="AFTER" resultType="long">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into wc_file (file_id, file_link, creation_time
+        )
+        values (#{fileId,jdbcType=BIGINT}, #{fileLink,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.mettre.usually.pojo.File">
+        insert into wc_file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fileId != null">
+                file_id,
+            </if>
+            <if test="fileLink != null">
+                file_link,
+            </if>
+            <if test="creationTime != null">
+                creation_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fileId != null">
+                #{fileId,jdbcType=BIGINT},
+            </if>
+            <if test="fileLink != null">
+                #{fileLink,jdbcType=VARCHAR},
+            </if>
+            <if test="creationTime != null">
+                #{creationTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.mettre.usually.pojo.File">
+        update wc_file
+        <set>
+            <if test="fileLink != null">
+                file_link = #{fileLink,jdbcType=VARCHAR},
+            </if>
+            <if test="creationTime != null">
+                creation_time = #{creationTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where file_id = #{fileId,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.mettre.usually.pojo.File">
     update wc_file
     set file_link = #{fileLink,jdbcType=VARCHAR},
       creation_time = #{creationTime,jdbcType=TIMESTAMP}
