@@ -7,7 +7,7 @@
 
     <!-- 指定数据连接驱动jar地址 -->
     <classPathEntry
-            location="C:\Users\Mettre\.m2\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar"/>
+            location="F:\开发工具\idea\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar"/>
 
     <!-- 一个数据库一个context -->
     <context id="infoGuardian">
@@ -87,11 +87,11 @@
         <!--enableDeleteByExample="false" enableSelectByExample="false"-->
         <!--enableUpdateByExample="false">-->
         <!--</table>-->
-        <table tableName="wc_feedback"
-               domainObjectName="Feedback" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-        </table>
+        <!--<table tableName="wc_feedback"-->
+               <!--domainObjectName="Feedback" enableCountByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false">-->
+        <!--</table>-->
 
     </context>
 </generatorConfiguration>

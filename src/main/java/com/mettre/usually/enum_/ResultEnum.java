@@ -13,12 +13,14 @@ public enum ResultEnum {
     NEWSIDNOTEMPTY("E112", "新闻id为空"),
     COMMENTARYDELETING("E113", "该条评论已被删除，无法评论"),
     DYNAMICTYPE("E114", "资讯类型不能为空"),
-    USEREMPTY("E115", "发布失败"),
+    USEREMPTY("E115", "用户id不存在"),
     IMG_NOT_EMPTY("102", "图片不存在"),
     IMG_QINIUYUN_EMPTY("103", "上传失败，请检查七牛云配置"),
     IMG_FORMAT_ERROR("104", "图片格式不正确"),
     FILE_EXCEED("105", "上传文件超过1M"),
     IMG_INSERT_ERROR("106", "图片插入失败"),
+    FEEDBACK_STATE("107", "操作失败"),
+    INSERT_ERROR("108", "插入失败"),
     PERMISSION_DENIED("E401", "未登录");
 
     private String code;

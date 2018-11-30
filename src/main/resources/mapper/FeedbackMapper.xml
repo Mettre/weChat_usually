@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mettre.usually.mapper.FeedbackMapper">
+    <resultMap id="BaseResultMap" type="com.mettre.usually.pojo.Feedback">
+        <id column="feedback_id" property="feedbackId" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="head_avatar" property="headAvatar" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--搜索反馈列表-->
+    <sql id="Base_Column_List">
+    feedback_id, wc_feedback.user_id, wc_feedback.creation_time, wc_feedback.update_time, wc_feedback.content, wc_feedback.state,wc_user.user_name,wc_user.phone,wc_user.head_avatar
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from wc_feedback
+        where feedback_id = #{feedbackId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+       delete from wc_feedback
+    where feedback_id = #{feedbackId,jdbcType=BIGINT}
+  </delete>
+
+    <insert id="insert" parameterType="com.mettre.usually.pojo.Feedback">
+    insert into wc_feedback (feedback_id, user_id, creation_time, 
+      update_time, content, state
+      )
+    values (#{feedbackId,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+
+    <insert id="insertSelective" parameterType="com.mettre.usually.pojo.Feedback">
+        insert into wc_feedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="feedbackId != null">
+                feedback_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="creationTime != null">
+                creation_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="feedbackId != null">
+                #{feedbackId,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="creationTime != null">
+                #{creationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.mettre.usually.pojo.Feedback">
+        update wc_feedback
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="creationTime != null">
+                creation_time = #{creationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where feedback_id = #{feedbackId,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.mettre.usually.pojo.Feedback">
+    update wc_feedback
+    set user_id = #{userId,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where feedback_id = #{feedbackId,jdbcType=BIGINT}
+  </update>
+
+    <select id="findFeedbackListPageVo" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM wc_feedback
+        left join wc_user
+        on wc_feedback.user_id = wc_user.user_id
+        <where>
+            1=1
+            <if test="feedbackSearchVM.userId != null">
+                and user_id = #{feedbackSearchVM.userId}
+            </if>
+            <if test="feedbackSearchVM.state != null">
+                and state = #{feedbackSearchVM.state}
+            </if>
+            <if test="feedbackSearchVM.feedbackId != null">
+                and feedback_id = #{feedbackSearchVM.feedbackId}
+            </if>
+        </where>
+    </select>
+
+</mapper>
