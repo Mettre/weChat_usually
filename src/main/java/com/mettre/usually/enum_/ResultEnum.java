@@ -21,6 +21,7 @@ public enum ResultEnum {
     IMG_INSERT_ERROR("106", "图片插入失败"),
     FEEDBACK_STATE("107", "操作失败"),
     INSERT_ERROR("108", "插入失败"),
+    DELETE_ERROR("109", "插入失败"),
     PERMISSION_DENIED("E401", "未登录");
 
     private String code;

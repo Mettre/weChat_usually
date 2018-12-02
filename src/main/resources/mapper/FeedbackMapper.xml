@@ -124,7 +124,7 @@
         <where>
             1=1
             <if test="feedbackSearchVM.userId != null">
-                and user_id = #{feedbackSearchVM.userId}
+                and wc_feedback.user_id = #{feedbackSearchVM.userId}
             </if>
             <if test="feedbackSearchVM.state != null">
                 and state = #{feedbackSearchVM.state}

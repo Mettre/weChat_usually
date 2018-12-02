@@ -132,6 +132,13 @@
             <version>[7.2.0, 7.2.99]</version>
         </dependency>
 
+        <!-- Redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+            <version>1.4.7.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

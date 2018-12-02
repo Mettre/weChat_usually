@@ -32,7 +32,8 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public int deleteByPrimaryKey(Long feedbackId) {
-        return 0;
+        int type = feedbackMapper.deleteByPrimaryKey(feedbackId);
+        return ReturnType.ReturnType(type, ResultEnum.DELETE_ERROR);
     }
 
     @Override

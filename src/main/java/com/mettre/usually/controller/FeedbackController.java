@@ -46,4 +46,13 @@ public class FeedbackController {
         Page<Feedback> page = new Page<>(feedbackSearchVM.getPage(), feedbackSearchVM.getSize());
         return new ResultUtil<>().setData(feedbackService.findFeedbackListPageVo(page, feedbackSearchVM));
     }
+
+
+    @RequestMapping(value = "/deleteFeedback", method = RequestMethod.POST)
+    @ApiOperation(value = "删除反馈")
+    public Result<Object> deleteFeedback(@RequestParam Long feedbackId) {
+        feedbackService.deleteByPrimaryKey(feedbackId);
+        return new ResultUtil<>().setSuccess();
+    }
+
 }
