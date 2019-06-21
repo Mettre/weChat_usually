@@ -26,9 +26,10 @@ public class FeedbackController {
     @Autowired
     public FeedbackService feedbackService;
 
-    @RequestMapping(value = "/addFeedback", method = RequestMethod.POST)
+    @RequestMapping(value = "/loginEd/addFeedback", method = RequestMethod.POST)
     @ApiOperation(value = "新增用户反馈")
     public Result<Object> addFeedback(@Valid @RequestBody FeedbackVM feedbackVM) {
+
         feedbackService.insert(feedbackVM);
         return new ResultUtil<>().setSuccess();
     }
@@ -40,7 +41,7 @@ public class FeedbackController {
         return new ResultUtil<>().setSuccess();
     }
 
-    @RequestMapping(value = "/FeedbackPageVo", method = RequestMethod.POST)
+    @RequestMapping(value = "/loginEd/FeedbackPageVo", method = RequestMethod.POST)
     @ApiOperation(value = "查询反馈列表")
     public Result<Object> findFeedbackList(@Valid @RequestBody FeedbackSearchVM feedbackSearchVM) {
         Page<Feedback> page = new Page<>(feedbackSearchVM.getPage(), feedbackSearchVM.getSize());
@@ -48,7 +49,7 @@ public class FeedbackController {
     }
 
 
-    @RequestMapping(value = "/deleteFeedback", method = RequestMethod.POST)
+    @RequestMapping(value = "/loginEd/deleteFeedback", method = RequestMethod.POST)
     @ApiOperation(value = "删除反馈")
     public Result<Object> deleteFeedback(@RequestParam Long feedbackId) {
         feedbackService.deleteByPrimaryKey(feedbackId);

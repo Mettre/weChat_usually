@@ -38,7 +38,7 @@ spring:
         max-request-size: 5Mb
 
 server:
-    port: 8765 #启动端口
+    port: 8764 #启动端口
 
 eureka:
   client:

@@ -123,14 +123,11 @@
         on wc_feedback.user_id = wc_user.user_id
         <where>
             1=1
-            <if test="feedbackSearchVM.userId != null">
-                and wc_feedback.user_id = #{feedbackSearchVM.userId}
+            <if test="userId != null">
+                and wc_feedback.user_id = #{userId}
             </if>
             <if test="feedbackSearchVM.state != null">
                 and state = #{feedbackSearchVM.state}
-            </if>
-            <if test="feedbackSearchVM.feedbackId != null">
-                and feedback_id = #{feedbackSearchVM.feedbackId}
             </if>
         </where>
     </select>

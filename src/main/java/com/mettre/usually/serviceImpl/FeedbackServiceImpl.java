@@ -1,6 +1,7 @@
 package com.mettre.usually.serviceImpl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mettre.account.jwt.SecurityContextStore;
 import com.mettre.usually.base.Result;
 import com.mettre.usually.base.ReturnType;
 import com.mettre.usually.dto.UserDto;
@@ -38,11 +39,12 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public int insert(FeedbackVM feedbackVM) {
-        Result<UserDto> userDtoResult = userClient.findUserInfo(feedbackVM.getUserId());
+        String userId = SecurityContextStore.getContext().getUserId();
+        Result<UserDto> userDtoResult = userClient.findUserInfo(userId);
         if (userDtoResult.getData() == null) {
             throw new CustomerException(ResultEnum.USEREMPTY);
         }
-        int type = feedbackMapper.insert(new Feedback(feedbackVM, StateEnum.SUBMITTED));
+        int type = feedbackMapper.insert(new Feedback(feedbackVM, StateEnum.SUBMITTED, userId));
         return ReturnType.ReturnType(type, ResultEnum.INSERT_ERROR);
     }
 
@@ -69,10 +71,11 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public Page<Feedback> findFeedbackListPageVo(Page<Feedback> page, FeedbackSearchVM feedbackSearchVM) {
+        String userId = SecurityContextStore.getContext().getUserId();
         if (null != feedbackSearchVM.getState() && !StateEnum.contains(feedbackSearchVM.getState().name())) {
             throw new CustomerException("反馈状态选择错误");
         }
-        List<Feedback> feedbackList = (List<Feedback>) feedbackMapper.findFeedbackListPageVo(page, feedbackSearchVM);
+        List<Feedback> feedbackList = (List<Feedback>) feedbackMapper.findFeedbackListPageVo(page, new FeedbackSearchVM(feedbackSearchVM.getState()),userId);
         page = page.setRecords(feedbackList);
         return page;
     }

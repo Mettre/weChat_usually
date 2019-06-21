@@ -42,7 +42,7 @@ public class UploadController {
     private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 
     @RequestMapping(value = "/img/upload", method = RequestMethod.PUT)
-    @ApiOperation(value = "上传文件")
+    @ApiOperation(value = "本地上传文件")
     public Result<Object> uploadImg(@RequestParam("file") MultipartFile multipartFile) {
 
         return new ResultUtil<>().setData(fileService.insert(multipartFile));

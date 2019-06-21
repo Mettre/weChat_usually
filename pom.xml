@@ -139,6 +139,13 @@
             <version>1.4.7.RELEASE</version>
         </dependency>
 
+        <!--公共类-->
+        <dependency>
+            <groupId>com.mettre</groupId>
+            <artifactId>account</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

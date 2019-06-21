@@ -42,8 +42,8 @@ public class Feedback {
 
 
     //新增反馈
-    public Feedback(FeedbackVM feedbackVM, StateEnum state) {
-        this.userId = feedbackVM.getUserId();
+    public Feedback(FeedbackVM feedbackVM, StateEnum state,String userId) {
+        this.userId = userId;
         this.creationTime = new Date();
         this.updateTime = new Date();
         this.content = feedbackVM.getContent();

@@ -23,5 +23,5 @@ public interface FeedbackMapper {
 
     int updateByPrimaryKey(Feedback record);
 
-    List<Feedback> findFeedbackListPageVo(Page<Feedback> page, @Param(value = "feedbackSearchVM") FeedbackSearchVM feedbackSearchVM);
+    List<Feedback> findFeedbackListPageVo(Page<Feedback> page, @Param(value = "feedbackSearchVM") FeedbackSearchVM feedbackSearchVM, @Param(value = "userId") String userId);
 }

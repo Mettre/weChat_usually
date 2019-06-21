@@ -7,9 +7,12 @@ import lombok.Data;
 @Data
 public class FeedbackSearchVM extends BasePage {
 
-    private String userId;
-
     private StateEnum state;
 
-    private Long feedbackId;
+    public FeedbackSearchVM() {
+    }
+
+    public FeedbackSearchVM(StateEnum state) {
+        this.state = state;
+    }
 }
