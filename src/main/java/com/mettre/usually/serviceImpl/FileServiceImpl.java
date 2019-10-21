@@ -1,10 +1,9 @@
 package com.mettre.usually.serviceImpl;
 
 import cn.hutool.core.util.StrUtil;
-import com.mettre.usually.base.ResultUtil;
-import com.mettre.usually.base.ReturnType;
-import com.mettre.usually.enum_.ResultEnum;
-import com.mettre.usually.exception.CustomerException;
+import com.mettre.base.ReturnType;
+import com.mettre.enum_.ResultEnum;
+import com.mettre.exception.CustomerException;
 import com.mettre.usually.mapper.FileMapper;
 import com.mettre.usually.pojo.File;
 import com.mettre.usually.service.FileService;
@@ -67,7 +66,7 @@ public class FileServiceImpl implements FileService {
             }
             File file = new File(return_path + java.io.File.separator + file_name);
             fileMapper.insert(file);
-            return ReturnType.ReturnType(file.getFileId(), ResultEnum.IMG_INSERT_ERROR);
+            return (long) ReturnType.ReturnType(file.getFileId(), ResultEnum.IMG_INSERT_ERROR);
         } catch (IOException e) {
             throw new CustomerException(ResultEnum.IMG_NOT_EMPTY);
         }

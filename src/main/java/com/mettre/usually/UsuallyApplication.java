@@ -1,6 +1,6 @@
 package com.mettre.usually;
 
-import com.mettre.account.jwt.JwtFilter;
+import com.mettre.jwt.JwtFilter;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

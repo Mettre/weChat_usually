@@ -1,10 +1,9 @@
 package com.mettre.usually.controller;
 
 import cn.hutool.core.util.StrUtil;
-import com.mettre.usually.base.Result;
-import com.mettre.usually.base.ResultUtil;
-import com.mettre.usually.enum_.ResultEnum;
-import com.mettre.usually.exception.CustomerException;
+import com.mettre.base.Result;
+import com.mettre.base.ResultUtil;
+import com.mettre.enum_.ResultEnum;
 import com.mettre.usually.service.FileService;
 import com.mettre.usually.utils.QiniuUtil;
 import io.swagger.annotations.Api;

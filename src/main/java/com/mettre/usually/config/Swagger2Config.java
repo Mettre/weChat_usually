@@ -1,6 +1,6 @@
 package com.mettre.usually.config;
 
-import com.mettre.usually.constant.CommonConstant;
+import com.mettre.constant.CommonConstant;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

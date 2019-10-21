@@ -1,7 +1,7 @@
 package com.mettre.usually.feign;
 
-import com.mettre.usually.base.Result;
-import com.mettre.usually.dto.UserDto;
+import com.mettre.base.Result;
+import com.mettre.dto.UserDto;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

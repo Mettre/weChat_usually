@@ -1,8 +1,8 @@
 package com.mettre.usually.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mettre.usually.base.Result;
-import com.mettre.usually.base.ResultUtil;
+import com.mettre.base.Result;
+import com.mettre.base.ResultUtil;
 import com.mettre.usually.pojo.Feedback;
 import com.mettre.usually.pojoVM.FeedbackModifyVM;
 import com.mettre.usually.pojoVM.FeedbackSearchVM;

@@ -1,9 +1,9 @@
 package com.mettre.usually.constant;
 
-import com.mettre.usually.base.Result;
-import com.mettre.usually.base.ResultUtil;
-import com.mettre.usually.enum_.ResultEnum;
-import com.mettre.usually.exception.CustomerException;
+import com.mettre.base.Result;
+import com.mettre.base.ResultUtil;
+import com.mettre.enum_.ResultEnum;
+import com.mettre.exception.CustomerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
